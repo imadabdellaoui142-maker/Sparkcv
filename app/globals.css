@@ -15,6 +15,13 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+@media print {
+  body { background: white; }
+  @page { margin: 0; size: A4 portrait; }
+  .cv-print { position: fixed; top: 0; left: 0; width: 210mm; min-height: 297mm; border-radius: 0; box-shadow: none; }
+  header, .fixed { display: none !important; }
+}
+
 @keyframes press {
   0% { transform: scale(1); }
   50% { transform: scale(0.97); }

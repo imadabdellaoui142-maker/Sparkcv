@@ -86,6 +86,12 @@ export default function Create() {
     return `${months[parseInt(m) - 1]} ${y}`;
   };
 
+  const goToPreview = () => {
+    const payload = { name, email, phone, title, location, experiences, educations, skills };
+    localStorage.setItem("sparkcv_data", JSON.stringify(payload));
+    setStep(5);
+  };
+
   const handlePrint = () => {
     window.print();
   };
@@ -219,6 +225,9 @@ export default function Create() {
           <div className="max-w-lg mx-auto px-5 pt-6 pb-4">
             <h2 className="text-lg font-black text-white">Ton CV est prêt !</h2>
             <p className="text-sm text-white/40 mt-1">Vérifie l&apos;aperçu et télécharge en PDF.</p>
+            <a href="/preview" className="inline-flex items-center gap-1 text-xs text-gold/70 hover:text-gold mt-2 transition-colors">
+              Ouvrir dans une nouvelle page →
+            </a>
           </div>
 
           <div className="max-w-lg mx-auto px-5 pb-36">
@@ -327,7 +336,7 @@ export default function Create() {
               Suivant
             </button>
           ) : step === 4 ? (
-            <button onClick={() => setStep(5)} disabled={!canNext()} className={`flex-1 h-11 rounded-xl font-bold text-sm transition-all ${
+            <button onClick={goToPreview} disabled={!canNext()} className={`flex-1 h-11 rounded-xl font-bold text-sm transition-all ${
               canNext() ? "bg-gold text-navy shadow-lg shadow-gold/15" : "bg-white/5 text-white/20"
             }`}>
               Voir l'aperçu
